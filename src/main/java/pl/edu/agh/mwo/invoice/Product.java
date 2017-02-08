@@ -1,4 +1,4 @@
-package pl.edu.agh.mwo.java2;
+package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
 

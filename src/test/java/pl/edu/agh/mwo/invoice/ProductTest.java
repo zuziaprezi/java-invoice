@@ -1,10 +1,12 @@
-package pl.edu.agh.mwo.java2;
+package pl.edu.agh.mwo.invoice;
 
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
 import org.junit.Test;
+
+import pl.edu.agh.mwo.invoice.Product;
 
 public class ProductTest {
 	private static final String PRODUCT_1 = "Product 1";
