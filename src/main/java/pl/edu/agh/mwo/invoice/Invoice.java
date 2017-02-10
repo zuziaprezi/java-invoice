@@ -1,9 +1,12 @@
 package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 
 public class Invoice {
+	private Collection<Product> products;
+	
 	public void addProduct(Product product) {
 		// TODO: implement
 	}
