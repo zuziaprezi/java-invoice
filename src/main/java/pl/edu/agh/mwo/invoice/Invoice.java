@@ -10,9 +10,6 @@ public class Invoice {
 	}
 
 	public void addProduct(Product product, Integer quantity) {
-		if (quantity <= 0) {
-			throw new IllegalArgumentException();
-		}
 		// TODO: implement
 	}
 
