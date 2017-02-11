@@ -17,11 +17,6 @@ public class Invoice {
 		// TODO: implement
 	}
 
-	public String getNumber() {
-		// TODO: implement
-		return null;
-	}
-
 	public BigDecimal getSubtotal() {
 		return new BigDecimal(0);
 	}
