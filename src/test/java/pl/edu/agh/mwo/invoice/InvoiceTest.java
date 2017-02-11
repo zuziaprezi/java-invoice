@@ -63,7 +63,7 @@ public class InvoiceTest {
 		invoice.addProduct(createProductWithZeroTax());
 		invoice.addProduct(createProductWithDefaultTax());
 		invoice.addProduct(createProductWithCustomTax());
-		assertBigDecimalsAreEquals("272.2", invoice.getTotal());
+		assertBigDecimalsAreEquals("272.29", invoice.getTotal());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class InvoiceTest {
 		invoice.addProduct(createProductWithZeroTax(), 3); // Total: 599.97
 		invoice.addProduct(createProductWithDefaultTax(), 2); // Total: 123.00
 		invoice.addProduct(createProductWithCustomTax(), 4); // Total: 43.2
-		assertBigDecimalsAreEquals("765.99", invoice.getTotal());
+		assertBigDecimalsAreEquals("766.17", invoice.getTotal());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -96,7 +96,7 @@ public class InvoiceTest {
 		Invoice invoice = createEmptyInvoice();
 		invoice.addProduct(createProductWithZeroTax(), -1);
 	}
-
+	
 	private Invoice createEmptyInvoice() {
 		return new Invoice();
 	}
