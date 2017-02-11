@@ -15,7 +15,6 @@ public class ProductTest {
 	public void testProductNameIsCorrect() {
 		Product product = Product.create(PRODUCT_1, new BigDecimal("100.0"));
 		assertEquals(PRODUCT_1, product.getName());
-
 	}
 
 	@Test

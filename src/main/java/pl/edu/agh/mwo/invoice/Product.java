@@ -11,8 +11,12 @@ public class Product {
 
 	private final BigDecimal taxPercent;
 
-	private Product(String name, BigDecimal price, BigDecimal tax) {
-		this.name = name;
+	private Product(String name, BigDecimal price) {
+		this(name, price, BigDecimal.valueOf(0.23));
+	}
+	
+	private Product(String newName, BigDecimal price, BigDecimal tax) {
+		this.name = newName;
 		this.price = price;
 		this.taxPercent = tax;
 	}

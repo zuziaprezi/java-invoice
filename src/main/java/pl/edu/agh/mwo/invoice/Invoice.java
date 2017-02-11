@@ -31,8 +31,4 @@ public class Invoice {
 	public BigDecimal getTotal() {
 		return null;
 	}
-
-	public static Invoice create() {
-		return new Invoice();
-	}
 }

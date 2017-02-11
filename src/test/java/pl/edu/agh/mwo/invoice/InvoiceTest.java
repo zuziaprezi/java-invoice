@@ -98,7 +98,7 @@ public class InvoiceTest {
 	}
 
 	private Invoice createEmptyInvoice() {
-		return Invoice.create();
+		return new Invoice();
 	}
 
 	private Product createProductWithZeroTax() {
