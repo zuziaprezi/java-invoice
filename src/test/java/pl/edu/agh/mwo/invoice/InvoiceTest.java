@@ -73,8 +73,7 @@ public class InvoiceTest {
 	public void testInvoiceHasPropoerSubtotalWithQuantityMoreThanOne() {
 		Invoice invoice = createEmptyInvoice();
 		invoice.addProduct(createTaxFreeProduct(), 3); // Subtotal: 599.97
-		invoice.addProduct(createOtherProduct(), 2); // Subtotal:
-														// 100.00
+		invoice.addProduct(createOtherProduct(), 2); // Subtotal: 100.00
 		invoice.addProduct(createDairyProduct(), 4); // Subtotal: 40.00
 		assertBigDecimalsAreEqual("739.97", invoice.getSubtotal());
 	}
