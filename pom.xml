@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>pl.edu.agh.mwo.java2</groupId>
-  <artifactId>zad2-invoice</artifactId>
+  <artifactId>mwo-invoice</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>zad2-invoice</name>
+  <name>mwo-invoice</name>
   <url>http://maven.apache.org</url>
 
   <properties>
