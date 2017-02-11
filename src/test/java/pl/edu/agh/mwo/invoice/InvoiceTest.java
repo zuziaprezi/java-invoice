@@ -118,7 +118,7 @@ public class InvoiceTest {
 	}
 
 	private void assertBigDecimalsAreEquals(BigDecimal expected, BigDecimal actual) {
-		assertEquals(0, expected.compareTo(actual));
+		assertEquals(expected.stripTrailingZeros(), actual.stripTrailingZeros());
 	}
 
 }
