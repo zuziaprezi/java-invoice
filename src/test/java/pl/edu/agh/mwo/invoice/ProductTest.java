@@ -68,6 +68,6 @@ public class ProductTest {
 	}
 
 	private void assertBigDecimalsAreEquals(String expected, BigDecimal actual) {
-		assertEquals(new BigDecimal(expected), (actual));
+		assertEquals(new BigDecimal(expected).stripTrailingZeros(), actual.stripTrailingZeros());
 	}
 }
