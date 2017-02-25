@@ -1,9 +1,8 @@
 package pl.edu.agh.mwo.invoice;
 
-import static org.junit.Assert.assertEquals;
-
 import java.math.BigDecimal;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import pl.edu.agh.mwo.invoice.Invoice;
@@ -116,11 +115,11 @@ public class InvoiceTest {
 	}
 
 	private void assertBigDecimalsAreEqual(String expected, BigDecimal actual) {
-		assertEquals(new BigDecimal(expected).stripTrailingZeros(), actual.stripTrailingZeros());
+		Assert.assertEquals(new BigDecimal(expected).stripTrailingZeros(), actual.stripTrailingZeros());
 	}
 
 	private void assertBigDecimalsAreEqual(BigDecimal expected, BigDecimal actual) {
-		assertEquals(expected.stripTrailingZeros(), actual.stripTrailingZeros());
+		Assert.assertEquals(expected.stripTrailingZeros(), actual.stripTrailingZeros());
 	}
 
 }

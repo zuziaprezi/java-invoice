@@ -1,9 +1,8 @@
 package pl.edu.agh.mwo.invoice.product;
 
-import static org.junit.Assert.assertEquals;
-
 import java.math.BigDecimal;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import pl.edu.agh.mwo.invoice.product.Product;
@@ -14,7 +13,7 @@ public class ProductTest {
 	@Test
 	public void testProductNameIsCorrect() {
 		Product product = new OtherProduct(SAMPLE_PRODUCT_NAME, new BigDecimal("100.0"));
-		assertEquals(SAMPLE_PRODUCT_NAME, product.getName());
+		Assert.assertEquals(SAMPLE_PRODUCT_NAME, product.getName());
 	}
 
 	@Test
@@ -58,6 +57,6 @@ public class ProductTest {
 	}
 
 	private void assertBigDecimalsAreEqual(String expected, BigDecimal actual) {
-		assertEquals(new BigDecimal(expected).stripTrailingZeros(), actual.stripTrailingZeros());
+		Assert.assertEquals(new BigDecimal(expected).stripTrailingZeros(), actual.stripTrailingZeros());
 	}
 }
