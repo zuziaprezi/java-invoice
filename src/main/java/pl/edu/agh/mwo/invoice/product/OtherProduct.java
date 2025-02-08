@@ -7,3 +7,4 @@ public class OtherProduct extends Product {
         super(name, price, new BigDecimal("0.23"));
     }
 }
+
