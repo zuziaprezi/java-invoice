@@ -16,14 +16,13 @@ public class Invoice {
     }
 
     public void addProduct(Product product, Integer quantity) {
-        this.products.put(product,quantity);
-
+        this.products.put(product, quantity);
     }
 
     public BigDecimal getNetPrice() {
         BigDecimal subtotal = BigDecimal.ZERO;
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
-            subtotal = subtotal.add(entry.getKey().getPrice()).multiply(BigDecimal.valueOf(entry.getValue()));
+            subtotal = subtotal.add(entry.getKey().getPrice().multiply(BigDecimal.valueOf(entry.getValue())));
         }
         return subtotal;
     }
@@ -35,7 +34,7 @@ public class Invoice {
     public BigDecimal getGrossPrice() {
         BigDecimal subtotal = BigDecimal.ZERO;
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
-            subtotal = subtotal.add(entry.getKey().getPriceWithTax()).multiply(BigDecimal.valueOf(entry.getValue()));
+            subtotal = subtotal.add(entry.getKey().getPriceWithTax().multiply(BigDecimal.valueOf(entry.getValue())));
         }
         return subtotal;
     }
