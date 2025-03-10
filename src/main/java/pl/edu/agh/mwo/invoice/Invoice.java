@@ -28,7 +28,7 @@ public class Invoice {
         this.products.put(product, quantity);
     }
 
-    public BigDecimal getNetPrice() {
+    public BigDecimal getSubtotal() {
         BigDecimal subtotal = BigDecimal.ZERO;
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
             subtotal = subtotal.add(entry.getKey().getPrice().multiply(BigDecimal.valueOf(entry.getValue())));
@@ -37,10 +37,10 @@ public class Invoice {
     }
 
     public BigDecimal getTax() {
-        return getGrossPrice().subtract(getNetPrice());
+        return getTotal().subtract(getSubtotal());
     }
 
-    public BigDecimal getGrossPrice() {
+    public BigDecimal getTotal() {
         BigDecimal subtotal = BigDecimal.ZERO;
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
             subtotal = subtotal.add(entry.getKey().getPriceWithTax().multiply(BigDecimal.valueOf(entry.getValue())));
