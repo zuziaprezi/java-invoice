@@ -12,10 +12,19 @@ public class Invoice {
     private Map<Product, Integer> products = new HashMap<>();
 
     public void addProduct(Product product) {
+        if (product == null) {
+            throw new IllegalArgumentException("Cannot add null product");
+        }
         this.products.put(product,1);
     }
 
     public void addProduct(Product product, Integer quantity) {
+        if (product == null) {
+            throw new IllegalArgumentException("Cannot add null product");
+        }
+        if (quantity == null || quantity <= 0) {
+            throw new IllegalArgumentException("Cannot add negative quantity");
+        }
         this.products.put(product, quantity);
     }
 
