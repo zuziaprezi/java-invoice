@@ -8,3 +8,4 @@ public class OtherProduct extends Product {
     }
 }
 
+ 
