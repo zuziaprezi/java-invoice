@@ -1,10 +1,7 @@
 package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import pl.edu.agh.mwo.invoice.product.Product;
 
@@ -47,4 +44,19 @@ public class Invoice {
         }
         return subtotal;
     }
+
+    public static String createNumber(){
+
+        return UUID.randomUUID().toString();
+
+    }
+
+//    public String lineItems(){
+//        String item = "";
+//        for (Map.Entry<Product, Integer> entry : products.entrySet()) {
+//
+//        }
+//        return item;
+//    }
+
 }

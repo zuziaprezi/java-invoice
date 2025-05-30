@@ -1,6 +1,9 @@
 package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hamcrest.Matchers;
 import org.junit.Assert;
@@ -11,6 +14,8 @@ import pl.edu.agh.mwo.invoice.product.DairyProduct;
 import pl.edu.agh.mwo.invoice.product.OtherProduct;
 import pl.edu.agh.mwo.invoice.product.Product;
 import pl.edu.agh.mwo.invoice.product.TaxFreeProduct;
+
+import static org.junit.Assert.assertEquals;
 
 public class InvoiceTest {
     private Invoice invoice;
@@ -123,5 +128,20 @@ public class InvoiceTest {
     @Test(expected = IllegalArgumentException.class)
     public void testAddingNullProduct() {
         invoice.addProduct(null);
+    }
+
+    @Test
+    public void testCreateNumber() {
+
+        String number = Invoice.createNumber();
+        assert number != null;
+    }
+    @Test
+    public void testCreateNumber_uniqe() {
+       Set<String> invoice_numbers = new HashSet<>();
+        for (int i = 0; i < 20; i++) {
+            invoice_numbers.add(Invoice.createNumber());
+        }
+        assertEquals(20, invoice_numbers.size());
     }
 }
