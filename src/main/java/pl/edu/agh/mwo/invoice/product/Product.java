@@ -9,6 +9,10 @@ public abstract class Product {
 
     private final BigDecimal taxPercent;
 
+    @Override
+    public String toString() {
+        return name;
+    }
     protected Product(String name, BigDecimal price, BigDecimal tax) {
         if(name == null || price == null || tax == null) {
             throw new IllegalArgumentException("Cannot create product with null parameters");
@@ -41,5 +45,19 @@ public abstract class Product {
     public BigDecimal getPriceWithTax() {
         return price.add(price.multiply(this.taxPercent));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return name.equals(product.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
 
 }

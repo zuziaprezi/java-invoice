@@ -1,11 +1,10 @@
 package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import org.hamcrest.Matchers;
+import org.hamcrest.number.BigDecimalCloseTo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +15,7 @@ import pl.edu.agh.mwo.invoice.product.Product;
 import pl.edu.agh.mwo.invoice.product.TaxFreeProduct;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class InvoiceTest {
     private Invoice invoice;
@@ -132,16 +132,53 @@ public class InvoiceTest {
 
     @Test
     public void testCreateNumber() {
-
-        String number = Invoice.createNumber();
+     Invoice invoice1 = new Invoice();
+        String number = invoice1.createNumber();
         assert number != null;
     }
     @Test
     public void testCreateNumber_uniqe() {
+
        Set<String> invoice_numbers = new HashSet<>();
-        for (int i = 0; i < 20; i++) {
-            invoice_numbers.add(Invoice.createNumber());
+        for (int i = 0; i < 100; i++) {
+            Invoice invoice = new Invoice();
+            invoice_numbers.add(invoice.createNumber());
         }
-        assertEquals(20, invoice_numbers.size());
+        assertEquals(100, invoice_numbers.size());
     }
+
+    @Test
+    public void testLineItems() {
+
+        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 2);
+
+        List<String> lineItems = invoice.lineItems();
+        String line = lineItems.get(0);
+        String expected = String.format("%-20s | %8.2f PLN x %4d = %10.2f PLN", "Chleb", 5.00, 2, 10.00);
+        assertEquals(expected, line);
+    }
+
+    @Test
+    public void testGetTotalInvoice() {
+
+        invoice.addProduct(new TaxFreeProduct("Maslo", new BigDecimal("5")), 2);
+        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 1);
+        invoice.addProduct(new TaxFreeProduct("Pinezka", new BigDecimal("5")), 5);
+
+
+        Assert.assertThat(new BigDecimal("40"), Matchers.comparesEqualTo(invoice.getTotalInvoice()));
+    }
+
+    @Test
+    public void testItemCounter() {
+
+        invoice.addProduct(new TaxFreeProduct("Maslo", new BigDecimal("5")), 2);
+        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 1);
+        invoice.addProduct(new TaxFreeProduct("Pinezka", new BigDecimal("5")), 5);
+
+        Integer expected = 2+1+5;
+        assertEquals(expected, invoice.itemsCounter());
+    }
+
+
 }
