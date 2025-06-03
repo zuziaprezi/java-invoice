@@ -23,7 +23,7 @@ public class Print {
        invoice.addProduct(new OtherProduct("Pinezka", new BigDecimal("0.01")), 1000);
        System.out.println("Numer faktury: " + invoice.createNumber());
 
-       for(String itemLine : Invoice.lineItems()){
+       for(String itemLine : invoice.lineItems()){
            System.out.println(itemLine);
        }
        System.out.println("Liczba produktów: " + invoice.itemsCounter());

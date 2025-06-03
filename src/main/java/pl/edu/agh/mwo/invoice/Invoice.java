@@ -9,7 +9,7 @@ import java.util.*;
 import pl.edu.agh.mwo.invoice.product.Product;
 
 public class Invoice {
-    private static Map<Product, Integer> products = new HashMap<>();
+    private  Map<Product, Integer> products = new HashMap<>();
 
     public  void addProduct(Product product) {
         if (product == null) {
@@ -20,7 +20,7 @@ public class Invoice {
             if (!products.containsKey(product)) {
                 this.products.put(product, 1);
             } else {
-                this.products.put(product, products.getOrDefault(product,0) + 1);
+                this.products.put(product, products.get(product) + 1);
             }
 
     }
@@ -35,7 +35,7 @@ public class Invoice {
         if (!products.containsKey(product)) {
             this.products.put(product, quantity);
         } else {
-            this.products.put(product, products.getOrDefault(product,0) + quantity);
+            this.products.put(product, products.get(product) + quantity);
         }
     }
 
@@ -71,7 +71,7 @@ public class Invoice {
         return invoiceNumber;
     }
 
-    public static List<String> lineItems() {
+    public List<String> lineItems() {
         List<String> itemLines = new ArrayList<>();
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
 
