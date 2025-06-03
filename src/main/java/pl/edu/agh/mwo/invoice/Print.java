@@ -27,9 +27,7 @@ public class Print {
            System.out.println(itemLine);
        }
        System.out.println("Liczba produktów: " + invoice.itemsCounter());
-       System.out.println("Suma: " + invoice.getTotalInvoice());
-
-
+       System.out.println("Suma: " + invoice.getTotal().setScale(2, BigDecimal.ROUND_HALF_UP));
 
    }
 }

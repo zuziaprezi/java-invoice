@@ -158,16 +158,6 @@ public class InvoiceTest {
         assertEquals(expected, line);
     }
 
-    @Test
-    public void testGetTotalInvoice() {
-
-        invoice.addProduct(new TaxFreeProduct("Maslo", new BigDecimal("5")), 2);
-        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 1);
-        invoice.addProduct(new TaxFreeProduct("Pinezka", new BigDecimal("5")), 5);
-
-
-        Assert.assertThat(new BigDecimal("40"), Matchers.comparesEqualTo(invoice.getTotalInvoice()));
-    }
 
     @Test
     public void testItemCounter() {
@@ -178,6 +168,51 @@ public class InvoiceTest {
 
         Integer expected = 2+1+5;
         assertEquals(expected, invoice.itemsCounter());
+    }
+
+    @Test
+    public void testLineItemsWhenEmpty(){
+        List<String> lines = invoice.lineItems();
+        assertTrue(lines.isEmpty());
+    }
+
+    @Test
+    public void testItemCounterWhenEmpty(){
+        Integer expected = 0;
+        assertEquals(expected, invoice.itemsCounter());
+    }
+
+    @Test
+    public void testLineItemDuplicates(){
+        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 2);
+        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 2);
+        List<String> lineItems = invoice.lineItems();
+        String line = lineItems.get(0);
+        String expected = String.format("%-20s | %8.2f PLN x %4d = %10.2f PLN", "Chleb", 5.00, 4, 20.00);
+        assertEquals(expected, line);
+    }
+
+    @Test
+    public void testLineItemDuplicatesWithoutQuantity(){
+        invoice.addProduct(new TaxFreeProduct("Piwko", new BigDecimal("8")));
+        invoice.addProduct(new TaxFreeProduct("Piwko", new BigDecimal("8")));
+        List<String> lineItems = invoice.lineItems();
+        String line = lineItems.get(0);
+        String expected = String.format("%-20s | %8.2f PLN x %4d = %10.2f PLN", "Piwko", 8.00, 2, 16.00);
+        assertEquals(expected, line);
+    }
+
+    @Test
+    public void testLineItemWithTaxProducts(){
+        invoice.addProduct(new DairyProduct("Mleko2.0", new BigDecimal("5")));
+        invoice.addProduct(new DairyProduct("Mleko3.2", new BigDecimal("6")));
+        List<String> lineItems = invoice.lineItems();
+        String line1 = lineItems.get(0);
+        String line2 = lineItems.get(1);
+        String expected1 = String.format("%-20s | %8.2f PLN x %4d = %10.2f PLN", "Mleko2.0", 5.40, 1, 5.40);
+        String expected2 = String.format("%-20s | %8.2f PLN x %4d = %10.2f PLN", "Mleko3.2", 6.48, 1, 6.48);
+        assertEquals(expected1, line1);
+        assertEquals(expected2, line2);
     }
 
 

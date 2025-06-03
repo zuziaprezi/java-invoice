@@ -16,6 +16,7 @@ public class Invoice {
             throw new IllegalArgumentException("Cannot add null product");
         }
 
+
             if (!products.containsKey(product)) {
                 this.products.put(product, 1);
             } else {
@@ -85,17 +86,7 @@ public class Invoice {
 
     }
 
-    public BigDecimal getTotalInvoice(){
-       BigDecimal total = BigDecimal.ZERO;
-        for(Map.Entry<Product, Integer> entry : products.entrySet()) {
-            Product product = entry.getKey();
-            Integer quantity = entry.getValue();
-            BigDecimal priceWithTax = product.getPriceWithTax().setScale(2, RoundingMode.HALF_UP);
-            BigDecimal sum = BigDecimal.valueOf(quantity).multiply(priceWithTax);
-            total = total.add(sum);
-        }
-        return total;
-    }
+
     public Integer itemsCounter(){
         Integer itemsCount = 0;
         for(Map.Entry<Product, Integer> entry : products.entrySet()) {
@@ -104,4 +95,7 @@ public class Invoice {
         }
         return itemsCount;
     }
+
+
+
 }
